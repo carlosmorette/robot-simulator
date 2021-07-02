@@ -6,7 +6,7 @@ defmodule RobotSimulator do
   @invalid_position {:error, "invalid position"}
   @invalid_instruction {:error, "invalid instruction"}
   @valid_instructions ["L", "R", "A"]
-  
+
   @type t :: %__MODULE__{}
 
   @doc """
@@ -68,11 +68,8 @@ defmodule RobotSimulator do
   end
 
   def exec_instruction(robot, "A"), do: %{robot | position: advance(robot)}
-  def exec_instruction(robot, "L"), do: set_direction(robot, "L")
-  def exec_instruction(robot, "R"), do: set_direction(robot, "R")
-
-  def set_direction(robot, "L"), do: %{robot | direction: rotate(robot.direction, "L")}
-  def set_direction(robot, "R"), do: %{robot | direction: rotate(robot.direction, "R")}
+  def exec_instruction(robot, "L"), do: %{robot | direction: rotate(robot.direction, "L")}
+  def exec_instruction(robot, "R"), do: %{robot | direction: rotate(robot.direction, "R")}
 
   def advance(robot) do
     [x, y] = Tuple.to_list(robot.position)
